@@ -29,41 +29,43 @@
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:id="@+id/txt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/connbtn"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/connbtn"
-        app:layout_constraintTop_toBottomOf="@+id/connbtn" />
+
 
     <Button
-        android:id="@+id/sendbtn"
+        android:id="@+id/stopMove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Send"
-        app:layout_constraintEnd_toEndOf="@+id/txt1"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/txt1"
-        app:layout_constraintTop_toBottomOf="@+id/txt1" />
+        android:layout_marginTop="16dp"
+        android:text="Stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/connbtn" />
 
-    <EditText
-        android:id="@+id/txt2"
+
+    <Button
+        android:id="@+id/rightMove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="text"
-        android:contentDescription="Enter text here"
-        app:layout_constraintEnd_toEndOf="@+id/sendbtn"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/sendbtn"
-        app:layout_constraintTop_toBottomOf="@+id/sendbtn" />
+        android:layout_marginTop="24dp"
+        android:text="To right stepper"
+        app:layout_constraintEnd_toEndOf="@+id/leftMove"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="@+id/leftMove"
+        app:layout_constraintTop_toBottomOf="@+id/leftMove" />
+
+    <Button
+        android:id="@+id/leftMove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="To left stepper"
+        app:layout_constraintEnd_toEndOf="@+id/stopMove"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="@+id/stopMove"
+        app:layout_constraintTop_toBottomOf="@+id/stopMove" />
+
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"

@@ -23,9 +23,6 @@ import java.util.UUID
 class Connection : AppCompatActivity() {
     private lateinit var connectionbtn: Button
     private lateinit var getDevisebtn: Button
-    private lateinit var sendbutton: Button
-    private lateinit var text1: TextView
-    private lateinit var result: TextView
     private lateinit var bluetoothAdaptor: BluetoothAdapter
     private lateinit var bluetoothDevice: BluetoothDevice
     private lateinit var bluetoothSocket: BluetoothSocket
@@ -33,6 +30,9 @@ class Connection : AppCompatActivity() {
     private lateinit var inputStream: InputStream;
     private lateinit var outputStream: OutputStream;
     private lateinit var rxThread: RxThread;
+    private lateinit var stopButton: Button;
+    private lateinit var torightstepper: Button;
+    private lateinit var toleftstepper: Button;
     private var rxData: String = "";
     private val REQUEST_BLUETOOTH_PERMISSION = 1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +43,9 @@ class Connection : AppCompatActivity() {
         }
         connectionbtn = findViewById(R.id.connbtn)
         getDevisebtn = findViewById(R.id.getDevise)
-        sendbutton = findViewById(R.id.sendbtn)
-        text1 = findViewById(R.id.txt1)
-        result = findViewById(R.id.txt2)
+        stopButton = findViewById(R.id.stopMove)
+        torightstepper = findViewById(R.id.rightMove)
+        toleftstepper = findViewById(R.id.leftMove)
         bluetoothAdaptor = BluetoothAdapter.getDefaultAdapter()
         intentFilter = IntentFilter()
         intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED)
@@ -104,13 +104,28 @@ class Connection : AppCompatActivity() {
         })
 
 
-        sendbutton.setOnClickListener(View.OnClickListener {
+        stopButton.setOnClickListener(View.OnClickListener {
             try {
-                outputStream.write((text1.text.toString() + "\r\n").toByteArray())
-            } catch (e: IOException) {
+                outputStream.write(("0\r\n").toByteArray())
+            }catch (e: IOException) {
                 e.printStackTrace()
             }
         })
+        toleftstepper.setOnClickListener(View.OnClickListener {
+            try {
+                outputStream.write(("1\r\n").toByteArray())
+            }catch (e: IOException) {
+                e.printStackTrace()
+            }
+        })
+        torightstepper.setOnClickListener(View.OnClickListener {
+            try {
+                outputStream.write(("2\r\n").toByteArray())
+            }catch (e: IOException) {
+                e.printStackTrace()
+            }
+        })
+
     }
     private fun hasBluetoothPermissions(): Boolean {
         return (checkSelfPermission(Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED &&
@@ -160,10 +175,8 @@ class Connection : AppCompatActivity() {
                     Thread.sleep(10)
                 } catch (e: IOException) {
                     e.printStackTrace()
-                    // Handle IOException
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
-                    // Handle InterruptedException
                 }
             }
         }
